@@ -34,16 +34,59 @@ from checkio.referees import checkers
 
 from tests import TESTS
 
+cover = """def cover(f, data):
+    return f(tuple(tuple(row) for row in data))
+"""
+
+NEIGHS = ((-1, 0), (1, 0), (0, 1), (0, -1))
+
+COLORS = (1, 2, 3, 4)
+
+ERROR_NOT_FOUND = "Didn't find a color for the country {}"
+ERROR_WRONG_COLOR = "I don't know about the color {}"
+
+
+def checker(region, user_result):
+    if not isinstance(user_result, (tuple, list)):
+        return False, "The result must be a tuple or a list"
+    country_set = set()
+    for i, row in enumerate(region):
+        for j, cell in enumerate(row):
+            country_set.add(cell)
+            neighbours = []
+            try:
+                neighbours.append(region[i][j + 1])
+            except IndexError:
+                pass
+            try:
+                neighbours.append(region[i + 1][j])
+            except IndexError:
+                pass
+            try:
+                cell_color = user_result[cell]
+            except IndexError:
+                return False, ERROR_NOT_FOUND.format(cell)
+            if cell_color not in COLORS:
+                return ERROR_WRONG_COLOR.format(cell_color)
+            for n in neighbours:
+                try:
+                    n_color = user_result[n]
+                except IndexError:
+                    return False, ERROR_NOT_FOUND.format(n)
+                if cell != n and cell_color == n_color:
+                    return False, "Same color neighbours."
+    if len(country_set) != len(user_result):
+        return False, "Excess colors in the result"
+    return True, "Gratz!"
+
+
 api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
         tests=TESTS,
         cover_code={
-            'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
+            'python-27': cover,
+            'python-3': cover
         },
-        # checker=None,  # checkers.float.comparison(2)
-        # add_allowed_modules=[],
-        # add_close_builtins=[],
-        # remove_allowed_modules=[]
+        checker=checker
     ).on_ready)
