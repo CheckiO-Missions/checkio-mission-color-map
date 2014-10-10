@@ -3,48 +3,57 @@
     separation of a plane into contiguous regions, producing a figure called a map, no more than
     four colors are required to color the regions of the map so that no two adjacent regions have
     the same color. Two regions are called adjacent if they share a common boundary that is not a
-    corner, where corners are the points shared by three or more regions
+    corner, where corners are the points shared by three or more regions.
+    For model we will use a grid with square cells.
 </p>
 
 <p>
-    Sum two passed ints
+    You are given a region map as a grid (matrix). There are placed <strong>N</strong> countries.
+    Each country has a number from 0 to N-1. Two cells are adjacent if they have a common edge.
+    Each country has one or more cells that are connected. Thus you can move between any cells of
+    the country X just using for this adjacent cells.
+    <br>
+    Each cell is marked by a number of a country.
+</p>
+<p>
+    You should "color" a map with <strong>4</strong> colors. All cells of the one country
+    should have one color. Adjacent cells of various country should not have the same color.
+</p>
+<p>
+    The result should be represented as a sequence of numbers 1,2,3 or 4.
+    Each element show a color of the country with that index. For example,
+    the 0th element shows a color of the country 0. So the result should have N-1 elements.
 </p>
 
+
 <p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example"
-         width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example"
+    <img class="for_info_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="480px"/>
+    <img class="for_editor_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
          width="380px"/>
 </p>
 
-<p><i>( Explain input and output values )</i></p>
 <p>
-    <strong>Input: </strong> Two arguments. Both are int
+    <strong>Input: </strong> A map of region as a tuple of tuples with integers.
 </p>
 
 <p>
-    <strong>Output: </strong> Int.
+    <strong>Output: </strong> The color sequence as a tuple/list of integer.
 </p>
 
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
-
     <p>
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
     </pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
 </p>
 
 <p>
     <strong>Precondition:</strong>
-    <i>Constraints for Input</i>
 </p>
