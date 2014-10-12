@@ -40,10 +40,14 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
             }
 
             //YOUR FUNCTION NAME
-            var fname = 'checkio';
+            var fname = 'color_map';
 
-            var checkioInput = data.in;
-            var checkioInputStr = fname + '(' + JSON.stringify(checkioInput) + ')';
+            var checkioInput = data.in || [
+                [0, 0, 0],
+                [0, 1, 1],
+                [0, 0, 2]
+            ];
+            var checkioInputStr = fname + '(' + JSON.stringify(checkioInput).replace + ')';
 
             var failError = function (dError) {
                 $content.find('.call').html(checkioInputStr);
