@@ -47,7 +47,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
                 [0, 1, 1],
                 [0, 0, 2]
             ];
-            var checkioInputStr = fname + '(' + JSON.stringify(checkioInput).replace + ')';
+            var checkioInputStr = fname + '(' + JSON.stringify(checkioInput).replace(/\[/g, "(").replace(/]/g, ")") + ')';
 
             var failError = function (dError) {
                 $content.find('.call').html(checkioInputStr);
@@ -73,6 +73,9 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
             $content.find('.call').html(checkioInputStr);
             $content.find('.output').html('Working...');
 
+            var svg = new SVG($content.find(".explanation")[0]);
+            svg.draw(checkioInput);
+
 
             if (data.ext) {
                 var rightResult = data.ext["answer"];
@@ -80,11 +83,13 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
                 var result = data.ext["result"];
                 var result_addon = data.ext["result_addon"];
 
+                svg.color(userResult);
+
                 //if you need additional info from tests (if exists)
                 var explanation = data.ext["explanation"];
                 $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult));
                 if (!result) {
-                    $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResult));
+                    $content.find('.answer').html(result_addon);
                     $content.find('.answer').addClass('error');
                     $content.find('.output').addClass('error');
                     $content.find('.call').addClass('error');
@@ -125,26 +130,73 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
 //            });
 //        });
 
-        var colorOrange4 = "#F0801A";
-        var colorOrange3 = "#FA8F00";
-        var colorOrange2 = "#FAA600";
-        var colorOrange1 = "#FABA00";
 
-        var colorBlue4 = "#294270";
-        var colorBlue3 = "#006CA9";
-        var colorBlue2 = "#65A1CF";
-        var colorBlue1 = "#8FC7ED";
+        function SVG(dom) {
 
-        var colorGrey4 = "#737370";
-        var colorGrey3 = "#9D9E9E";
-        var colorGrey2 = "#C5C6C6";
-        var colorGrey1 = "#EBEDED";
+            var colorOrange4 = "#F0801A";
+            var colorOrange3 = "#FA8F00";
+            var colorOrange2 = "#FAA600";
+            var colorOrange1 = "#FABA00";
 
-        var colorWhite = "#FFFFFF";
-        //Your Additional functions or objects inside scope
-        //
-        //
-        //
+            var colorBlue4 = "#294270";
+            var colorBlue3 = "#006CA9";
+            var colorBlue2 = "#65A1CF";
+            var colorBlue1 = "#8FC7ED";
+
+            var colorGrey4 = "#737370";
+            var colorGrey3 = "#9D9E9E";
+            var colorGrey2 = "#C5C6C6";
+            var colorGrey1 = "#EBEDED";
+
+            var colorWhite = "#FFFFFF";
+
+            var paper;
+
+            var padding = 10;
+
+            var cell = 30;
+
+            var fourColors = [colorGrey3, colorBlue2, colorOrange1, colorOrange3];
+
+            var aCell = {"fill": colorGrey1, "stroke": colorBlue4, "stroke-width": 2};
+            var aNumb = {"stroke": colorBlue4, "font-family": "Roboto, Arial, sans", "font-size": cell * 0.5};
+
+            var grid;
+
+            this.draw = function (matrix) {
+                paper = Raphael(dom, cell * matrix[0].length + 2 * padding,
+                    cell * matrix.length + 2 * padding);
+                grid = paper.set();
+                for (var i = 0; i < matrix.length; i++) {
+                    var row = paper.set();
+                    for (var j = 0; j < matrix[0].length; j++) {
+                        var r = paper.rect(padding + cell * j, padding + cell * i, cell,
+                            cell).attr(aCell);
+                        r.mark = matrix[i][j];
+                        row.push(r);
+                        paper.text(padding + cell * (j + 0.5), padding + cell * (i + 0.5),
+                            matrix[i][j]).attr(aNumb);
+                    }
+                    grid.push(row);
+                }
+            };
+
+            this.color = function(colorArray) {
+                if (!Array.isArray(colorArray)) {
+                    return false;
+                }
+                for (var i = 0; i < grid.length; i++) {
+                    for (var j = 0; j < grid[i].length; j++) {
+                        var r = grid[i][j];
+                        var color = colorArray[r.mark];
+                        if (color && [1, 2, 3, 4].indexOf(color) !== -1) {
+                            r.attr("fill", fourColors[color - 1]);
+                        }
+                    }
+                }
+            }
+
+        }
 
 
     }

@@ -54,20 +54,16 @@ def checker(region, user_result):
         for j, cell in enumerate(row):
             country_set.add(cell)
             neighbours = []
-            try:
+            if j < len(row) - 1:
                 neighbours.append(region[i][j + 1])
-            except IndexError:
-                pass
-            try:
+            if i < len(region) - 1:
                 neighbours.append(region[i + 1][j])
-            except IndexError:
-                pass
             try:
                 cell_color = user_result[cell]
             except IndexError:
                 return False, ERROR_NOT_FOUND.format(cell)
             if cell_color not in COLORS:
-                return ERROR_WRONG_COLOR.format(cell_color)
+                return False, ERROR_WRONG_COLOR.format(cell_color)
             for n in neighbours:
                 try:
                     n_color = user_result[n]
@@ -88,5 +84,6 @@ api.add_listener(
             'python-27': cover,
             'python-3': cover
         },
-        checker=checker
+        checker=checker,
+        function_name="color_map"
     ).on_ready)
