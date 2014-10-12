@@ -53,6 +53,8 @@ BASIC = [
 ]
 
 EXTRA = [
+    [[0]],
+    [[0 for _ in range(10)] for __ in range(10)],
     [[i * 5 + j for j in range(5)]for i in range(5)],
     [
         [11, 0, 0, 0, 0, 0, 7, 0],

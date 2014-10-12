@@ -1,5 +1,7 @@
 <p>
-    In mathematics, the four color theorem, or the four color map theorem, states that, given any
+    In mathematics,
+    <a href="http://en.wikipedia.org/wiki/Four_color_theorem">the four color theorem</a>,
+    or the four color map theorem, states that, given any
     separation of a plane into contiguous regions, producing a figure called a map, no more than
     four colors are required to color the regions of the map so that no two adjacent regions have
     the same color. Two regions are called adjacent if they share a common boundary that is not a
@@ -47,13 +49,25 @@
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
+color_map(((0, 0, 0), (0, 1, 1), (0, 0, 2)) # [1, 2, 3] or [2, 3, 1] or ...
     </pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
+    This is a classic <a href="http://en.wikipedia.org/wiki/Constraint_satisfaction_problem">
+    constraint satisfaction problem</a>.
+
+    The four color theorem was proven in 1976 by Kenneth Appel and Wolfgang Haken.
+    It was the first major theorem to be proved using a computer.
+    Appel and Haken's approach started by showing that there is a particular set of 1,936 maps,
+    each of which cannot be part of a smallest-sized counterexample to the four color theorem.
 </p>
 
 <p>
     <strong>Precondition:</strong>
+    0 &lt; len(region) &le; 10<br>
+    all(0 &lt; len(row) &le; 10 and len(row) == len(region[0]) for row in region)<br>
+    One country cells are connected.<br>
+    Country numbers are sequence from 0 to N-1.
 </p>
