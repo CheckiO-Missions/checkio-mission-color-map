@@ -13,6 +13,9 @@ TESTS = {
     ],
     "Extra": [
 
+    ],
+    "Random": [
+
     ]
 }
 
@@ -77,9 +80,42 @@ EXTRA = [
 
 ]
 
+from random import randint, random, choice
+
+
+def generate_map(rows=None, cols=None, p=0.1):
+    if rows is None:
+        rows = randint(3, 10)
+    if cols is None:
+        cols = randint(3, 10)
+    region = [[-1 for _ in range(cols)] for _ in range(rows)]
+    unchecked = set((i, j) for i in range(rows) for j in range(cols))
+    country = 0
+    current = None
+    while unchecked:
+        if not current:
+            current = unchecked.pop()
+        else:
+            unchecked.remove(current)
+        x, y = current
+        region[x][y] = country
+        neighbors = [(x + dx, y + dy) for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1))
+                     if 0 <= x + dx < rows and 0 <= y + dy < cols and region[x + dx][y + dy] == -1]
+        if not neighbors or random() < p:
+            current = None
+            country += 1
+        else:
+            current = choice(neighbors)
+    # for row in region:
+    #     print([str(i).zfill(2) for i in row])
+    return region
 
 for test in BASIC:
     TESTS["Basics"].append({"input": test, "answer": test})
 
 for test in EXTRA:
     TESTS["Extra"].append({"input": test, "answer": test})
+
+for dummy in range(5):
+    test = generate_map()
+    TESTS["Random"].append({"input": test, "answer": test})
