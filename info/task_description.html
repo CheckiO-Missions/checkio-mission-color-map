@@ -1,30 +1,34 @@
 <p>
-    In mathematics,
+    In mathematics
     <a href="http://en.wikipedia.org/wiki/Four_color_theorem">the four color theorem</a>,
-    or the four color map theorem, states that, given any
-    separation of a plane into contiguous regions, producing a figure called a map, no more than
-    four colors are required to color the regions of the map so that no two adjacent regions have
-    the same color. Two regions are called adjacent if they share a common boundary that is not a
-    corner, where corners are the points shared by three or more regions.
-    For model we will use a grid with square cells.
+    or the four color map theorem, states that: when given any separation of a plane into contiguous
+    regions and producing a figure called a map, no more than four colors are required to color the
+    regions of the map so that no two adjacent regions have the same color. Two regions are called
+    adjacent if they share a common boundary that is not a corner, where corners are the points
+    shared by three or more regions. For our model we will use a grid with square cells.
+
 </p>
 
 <p>
-    You are given a region map as a grid (matrix). There are placed <strong>N</strong> countries.
-    Each country has a number from 0 to N-1. Two cells are adjacent if they have a common edge.
-    Each country has one or more cells that are connected. Thus you can move between any cells of
-    the country X just using for this adjacent cells.
+    You are given a regional map as a grid (matrix). There are N countries located on this map. Each
+    country has a number from 0 to N-1. Two cells are adjacent if they have a common edge. Each
+    country has one or more cells that are connected. Thus you can move between any cells of the
+    country X just using for this adjacent cells.
+
     <br>
-    Each cell is marked by a number of a country.
+    Each cell is marked by the number of its designated country.
+
 </p>
 <p>
-    You should "color" a map with <strong>4</strong> colors. All cells of the one country
-    should have one color. Adjacent cells of various country should not have the same color.
+    You should "color" a map with <strong>4</strong> colors. All of the cells comprising one country
+    should be one color. Adjacent cells of various countries should not have the same color.
+
 </p>
 <p>
-    The result should be represented as a sequence of numbers 1,2,3 or 4.
-    Each element show a color of the country with that index. For example,
-    the 0th element shows a color of the country 0. So the result should have N elements.
+    The result should be represented as a sequence of numbers 1,2,3 or 4. Each element shows the
+    color of its country matching the index. For example, the 0th element shows the color of country
+    0. So the result should have N-1 elements.
+
 </p>
 
 
