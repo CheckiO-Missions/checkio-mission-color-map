@@ -1,0 +1,82 @@
+<p>
+  En matem&aacute;ticas
+    <a href="http://en.wikipedia.org/wiki/Four_color_theorem">el teorema de los cuatro colores</a>,
+    (o el teorema de mapa de cuatro colores) establece que: cuando se da alguna
+    separaci&oacute;n de un plano en regiones contiguas y se produce una figura llamada
+    mapa, no se requieren m&aacute;s de cuatro colores para colorear las regiones del
+    mapa, de manera que hayan dos regiones adyacentes con el mismo color. Dos
+    regiones se llaman adyacentes si comparten un l&iacute;mite com&uacute;n que no sea una
+    esquina, donde esquina hace referencia a puntos compartidos por tres o m&aacute;s
+    regiones. Para nuestro modelo vamos a utilizar una cuadr&iacute;cula con
+    celdas cuadradas.
+</p>
+
+<p>
+  Se te asigna un mapa de regiones como una cuadr&iacute;cula (matriz). Existen N pa&iacute;ses
+  ubicados en este mapa, y cada pa&iacute;s tiene un n&uacute;mero de 0 a N-1. Dos celdas
+  son adyacentes si tienen un borde com&uacute;n y cada pa&iacute;s tiene una o m&aacute;s celdas
+  que est&aacute;n conectadas. Te puedes mover entre las celdas del pa&iacute;s X simplemente
+  utilizando sus las celdas adyacentes.
+
+    <br>
+    Cada celda est&aacute; marcada por el n&uacute;mero de su pa&iacute;s designado.
+
+</p>
+<p>
+  Deber&aacute;s "colorear" un mapa usando <strong>4</strong> colores, teniendo en
+  cuenta que todas las celdas que comprenden un pa&iacute;s deber&aacute;n tener un
+  solo color, y las celdas adyacentes de diferentes pa&iacute;ses deben tener un
+  color distinto.
+</p>
+<p>
+  El resultado debe ser representado como una secuencia de n&uacute;meros 1,2,3 o 4,
+  donde cada elemento muestra el color del pa&iacute;s que coincide con el &iacute;ndice.
+  Por ejemplo, el elemento 0th del resultado muestra el color del pa&iacute;s 0.
+  De esta forma, el resultado deber&aacute; tener N elementos.
+</p>
+
+
+<p style="text-align: center;">
+    <img class="for_info_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="480px"/>
+    <img class="for_editor_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="380px"/>
+</p>
+
+<p>
+    <strong>Datos de Entrada: </strong> Un mapa de regiones, como una tupla de tuplas con enteros (<em>int</em>).
+</p>
+
+<p>
+    <strong>Salida: </strong> La secuencia de colores como una tupla / lista de enteros (<em>int</em>).
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Ejemplo:</strong>
+    </p>
+    <pre class="brush: python">
+color_map(((0, 0, 0), (0, 1, 1), (0, 0, 2)) # [1, 2, 3] or [2, 3, 1] or ...</pre>
+</div>
+<br>
+<p class="for_info_only">
+    <strong>&iquest;C&oacute;mo se utiliza?:</strong>
+    Este es un cl&aacute;sico <a href="http://en.wikipedia.org/wiki/Constraint_satisfaction_problem">
+    problema de satisfacci&oacute;n de restricciones</a> (<em>CSP</em> por sus siglas en ingl&eacute;s).
+
+    El teorema de los cuatro colores fue probado en 1976 por Kenneth Appel y
+    Wolfgang Haken. Este fue el primer teorema de importancia a ser probado
+    usando un ordenador. El enfoque de Appel y Haken comenz&oacute; demostrando que
+    hay un conjunto particular de 1.936 mapas, cada uno de los cuales no pueden
+    ser parte de un contraejemplo de menor tama&ntilde;o para el teorema
+    de cuatro colores.
+</p>
+
+<p>
+    <strong>Condiciones:</strong>
+    0 &lt; len(region) &le; 10<br>
+    all(0 &lt; len(row) &le; 10 and len(row) == len(region[0]) for row in region)<br>
+    Las celdas pertenecientes a un pa&iacute;s est&aacute;n conectadas.<br>
+    Los n&uacute;meros de los paises son secuencias de 0 hasta N-1.
+</p>
