@@ -1,0 +1,73 @@
+<p>
+    En mathématiques, 
+    <a href="http://en.wikipedia.org/wiki/Four_color_theorem">le théorème de quatre couleurs</a>,
+    indique qu'il est possible, 
+    en n'utilisant que quatre couleurs différentes, 
+    de colorier n'importe quelle carte découpée en zones connexes, 
+    de sorte que deux zones adjacentes (ou limitrophes), 
+    c'est-à-dire ayant toute une frontière (et non simplement un point) 
+    en commun, reçoivent toujours deux couleurs distinctes.<br>
+    Pour notre modélisation, nous utilisons une grille (matrice) de cases carrées.
+</p>
+
+<p>
+    Une carte vous est donnée sous la forme d'une grille (matrice).
+    Il y a N pays sur cette carte. Chaque pays porte un numéro compris entre 0 et N-1.
+    Deux cases sont adjacentes si elles ont un côté commun. Chaque pays est constitué d'une ou plusieurs cases adjacentes,
+    de sorte que l'on peut parcourir toutes les cases d'un pays en ne traversant que des cases adjacentes.<br>
+    Chaque cellule d'un pays donné porte le numéro de ce pays.
+</p>
+<p>
+    Il vous faut "colorier" une carte avec <strong>4</strong> couleurs.
+    Toutes les cases d'un même pays doivent être coloriées de la même couleur.
+    Deux cellules adjacentes appartenant à deux pays différents doivent porter des couleurs différentes.
+</p>
+<p>
+  Le réultat sera représenté par une liste de nombres 1,2,3 ou 4.
+  L'élément d'indice i de la liste désigne la couleur du pays dont le numéro est i.
+  Par exemple, l'élément d'indice 0 désigne la couleur du pays numéro 0.
+  La liste des résultats portera donc N éléments.
+</p>
+
+
+<p style="text-align: center;">
+    <img class="for_info_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="480px"/>
+    <img class="for_editor_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="380px"/>
+</p>
+
+<p>
+    <strong>Input: </strong> Une carte, comme tuple de tuples d'entiers (int).
+</p>
+
+<p>
+    <strong>Output: </strong>La suite des couleurs, comme tuple/liste d'entiers.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Exemple:</strong>
+    </p>
+    <pre class="brush: python">
+color_map(((0, 0, 0), (0, 1, 1), (0, 0, 2)) # [1, 2, 3] or [2, 3, 1] or ...</pre>
+</div>
+<br>
+<p class="for_info_only">
+    <strong>Application: </strong>
+    C'est un problème classique de <a href="http://en.wikipedia.org/wiki/Constraint_satisfaction_problem">
+    constraint satisfaction problem (CSP) - problème de satisfaction de contraintes</a>.
+    Le théorème des quatre couleurs a été prouvé en 1976 par Kenneth Appel et Wolfgang Haken.
+    C'est le premier théorème d'importance prouvé à l'aide d'un ordinateur.
+    L'approche de Appel et Haken commence par mettre en évidence un ensemble particulier de 1.936 cartes,
+    dont aucune ne peut être une sous-carte du contre-exemple hypothétique de plus petite taille du théorème des quatre couleurs.
+</p>
+
+<p>
+    <strong>Préconditions:</strong>
+    0 &lt; len(region) &le; 10<br>
+    all(0 &lt; len(row) &le; 10 and len(row) == len(region[0]) for row in region)<br>
+    Les cases d'un pays sont connectées (les pays sont connexes).<br>
+    Les N pays sont numérotés de 0 à N-1.
+</p>
