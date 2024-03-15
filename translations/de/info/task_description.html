@@ -1,0 +1,76 @@
+<p>
+    In Mathematik
+   <a href="http://en.wikipedia.org/wiki/Four_color_theorem">the four color theorem</a>,
+    oder das Vier-Farben-Karten-Theorem, besagt, dass bei einer beliebigen Aufteilung einer Ebene in zusammenhängende
+    in zusammenhängende Regionen und die Erstellung einer Figur, die Karte genannt wird, nicht mehr als vier Farben erforderlich sind, um die
+    regionen der Karte zu färben, so dass keine zwei benachbarten Regionen die gleiche Farbe haben. Zwei Regionen werden als
+    benachbart, wenn sie eine gemeinsame Grenze haben, die keine Ecke ist, wobei Ecken die Punkte sind
+    die von drei oder mehr Regionen geteilt werden. Für unser Modell werden wir ein Gitter mit quadratischen Zellen verwenden.
+
+</p>
+
+<p>
+    Sie erhalten eine regionale Karte in Form eines Gitters (Matrix). Auf dieser Karte befinden sich N Länder. Jedes
+    land hat eine Nummer von 0 bis N-1. Zwei Zellen sind benachbart, wenn sie eine gemeinsame Kante haben. Jedes
+    land hat eine oder mehrere Zellen, die miteinander verbunden sind. Sie können sich also zwischen beliebigen Zellen des
+    landes X bewegen, indem Sie einfach die benachbarten Zellen benutzen.
+
+   <br>
+    Jede Zelle ist mit der Nummer des entsprechenden Landes gekennzeichnet.
+
+</p>
+<p>
+    Sie sollten eine Karte mit <strong>4</strong> Farben "einfärben". Alle Zellen, die zu einem Land gehören
+    sollten eine Farbe haben. Benachbarte Zellen verschiedener Länder sollten nicht die gleiche Farbe haben.
+
+</p>
+<p>
+    Das Ergebnis sollte als eine Folge von Zahlen 1, 2, 3 oder 4 dargestellt werden. Jedes Element zeigt die
+    farbe des Landes, das dem Index entspricht. Zum Beispiel zeigt das 0. Element die Farbe des Landes
+    0. Das Ergebnis sollte also N Elemente enthalten.
+
+</p>
+
+
+<p style="text-align: center;">
+    <img class="for_info_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="480px"/>
+    <img class="for_editor_only" title="color-map" src="{{MEDIA}}color-map.svg" alt="color-map"
+         width="380px"/>
+</p>
+
+<p>
+   <strong>Eingabe: </strong> Eine Karte der Region als Tupel von Tupeln mit ganzen Zahlen.
+</p>
+
+<p>
+   <strong>Ausgabe: </strong> Die Farbsequenz als Tupel/Liste mit ganzen Zahlen.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Beispiel:</strong>
+    </p>
+    <pre class="brush: python">
+color_map(((0, 0, 0), (0, 1, 1), (0, 0, 2))) # [1, 2, 3] or [2, 3, 1] or ...</pre>
+</div>
+<br>
+<p class="for_info_only">
+   <strong>Wie es verwendet wird: </strong>
+    Dies ist ein klassisches <a href="http://en.wikipedia.org/wiki/Constraint_satisfaction_problem">
+    constraint satisfaction problem</a>.
+
+    Das Vierfarbensatz-Theorem wurde 1976 von Kenneth Appel und Wolfgang Haken bewiesen.
+    Es war das erste wichtige Theorem, das mit Hilfe eines Computers bewiesen wurde.
+    Der Ansatz von Appel und Haken begann damit, zu zeigen, dass es eine bestimmte Menge von 1.936 Karten gibt,
+    von denen jede nicht Teil eines kleinsten Gegenbeispiels zum Vierfarbensatz sein kann.
+</p>
+
+<p>
+   <strong>Vorbedingung:</strong>
+    0 &lt; len(Region) &le; 10<br>
+    all(0 &lt; len(row) &le; 10 und len(row) == len(region[0]) for row in region)<br>
+    Die Zellen eines Landes sind miteinander verbunden.<br>
+    Die Ländernummern sind eine Folge von 0 bis N-1.
+</p>
